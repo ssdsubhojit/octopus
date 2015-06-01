@@ -1,6 +1,6 @@
 {
 	"name": "Octopus",
-	"version": "v1",
+	"version": "0.0.1",
 	"author": "Octopus",
 	"private": true,
 	"description": "Code designed to fetch results from qbox",
