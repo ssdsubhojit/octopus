@@ -103,11 +103,11 @@ app.controller('SearchResultCtrl', function ($scope, $routeParams, $http, ejsRes
     /**
      * Defining the redirecting url for previous page and next page links
      */
-    $scope.dataurl = "";
-    $scope.dataurl = {
+    $scope.paginationurl = "";
+    $scope.paginationurl = {
         "nextUrl": {}
     };
-    $scope.dataurl = {
+    $scope.paginationurl = {
         "prevUrl": {}
     };
     
@@ -116,11 +116,11 @@ app.controller('SearchResultCtrl', function ($scope, $routeParams, $http, ejsRes
      * for previous page and next page links
      */
     if (typeof $scope.id === 'undefined' || $scope.id === 'all') {
-        $scope.dataurl.nextUrl = 'location/all/' + newStartPos;
-        $scope.dataurl.prevUrl = 'location/all/' + prevStartPos;        
+        $scope.paginationurl.nextUrl = 'location/all/' + newStartPos;
+        $scope.paginationurl.prevUrl = 'location/all/' + prevStartPos;        
     } else {
-        $scope.dataurl.nextUrl = 'location/' + $scope.id + '/' + newStartPos;
-        $scope.dataurl.prevUrl = 'location/' + $scope.id + '/' + prevStartPos;
+        $scope.paginationurl.nextUrl = 'location/' + $scope.id + '/' + newStartPos;
+        $scope.paginationurl.prevUrl = 'location/' + $scope.id + '/' + prevStartPos;
     }
     
     $scope.data = "";
@@ -165,6 +165,7 @@ app.controller('SearchResultCtrl', function ($scope, $routeParams, $http, ejsRes
             if (typeof $scope.id === 'undefined' || $scope.id === 'all') {
                 searchQuery = oQuery.query($scope.queryTerm || '*');
             } else {
+                //  If url has any location id
                 searchQuery = ejs.BoolQuery()
                     .must(ejs.TermQuery('field_location', $scope.id));
             }
